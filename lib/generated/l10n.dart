@@ -59,6 +59,36 @@ class S {
       args: [],
     );
   }
+
+  /// `All`
+  String get allTasks {
+    return Intl.message(
+      'All',
+      name: 'allTasks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Work`
+  String get work {
+    return Intl.message(
+      'Work',
+      name: 'work',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Personal`
+  String get personal {
+    return Intl.message(
+      'Personal',
+      name: 'personal',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
