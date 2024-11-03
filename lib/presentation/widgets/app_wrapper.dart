@@ -10,7 +10,7 @@ class AppWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: Spacings.paddingH16,
+        padding: Spacings.padding16,
         child: child,
       ),
     );
