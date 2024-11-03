@@ -31,4 +31,19 @@ class RepositoryImpl implements Repository {
       rethrow;
     }
   }
+
+  @override
+  Future<void> updateTaskStatus(String taskId, int status) async {
+    try {
+      await networkService.put(
+        '$_baseUrl$tasksEndpoint/$taskId',
+        body: {
+          'status': status,
+        },
+        headers: {'Content-Type': _contentType},
+      );
+    } catch (e) {
+      throw Exception('Failed to update task status: $e');
+    }
+  }
 }

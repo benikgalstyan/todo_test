@@ -21,10 +21,14 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const LoginScreen(),
       );
     },
-    SecondRoute.name: (routeData) {
+    MainRoute.name: (routeData) {
+      final args = routeData.argsAs<MainRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const SecondScreen(),
+        child: MainScreen(
+          key: args.key,
+          tasks: args.tasks,
+        ),
       );
     },
   };
@@ -45,15 +49,38 @@ class LoginRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [SecondScreen]
-class SecondRoute extends PageRouteInfo<void> {
-  const SecondRoute({List<PageRouteInfo>? children})
-      : super(
-          SecondRoute.name,
+/// [MainScreen]
+class MainRoute extends PageRouteInfo<MainRouteArgs> {
+  MainRoute({
+    Key? key,
+    required List<Task> tasks,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MainRoute.name,
+          args: MainRouteArgs(
+            key: key,
+            tasks: tasks,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'SecondRoute';
+  static const String name = 'MainRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<MainRouteArgs> page = PageInfo<MainRouteArgs>(name);
+}
+
+class MainRouteArgs {
+  const MainRouteArgs({
+    this.key,
+    required this.tasks,
+  });
+
+  final Key? key;
+
+  final List<Task> tasks;
+
+  @override
+  String toString() {
+    return 'MainRouteArgs{key: $key, tasks: $tasks}';
+  }
 }
