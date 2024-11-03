@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class Task {
   Task({
     required this.taskId,
@@ -30,8 +32,13 @@ class Task {
         'urgent': urgent,
         'description': description,
       };
+
+  String get formattedFinishDate {
+    return DateFormat('dd/MM/yyyy').format(finishDate);
+  }
+
   final String taskId;
-  final int status;
+  int status;
   final String name;
   final int type;
   final DateTime finishDate;
