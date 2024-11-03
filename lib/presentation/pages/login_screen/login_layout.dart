@@ -4,7 +4,6 @@ import 'package:todo/core/context_extensions.dart';
 import 'package:todo/core/router/router.dart';
 import 'package:todo/core/theme/palette.dart';
 import 'package:todo/presentation/pages/login_screen/bloc/login_bloc.dart';
-import 'package:todo/presentation/pages/main_screen/main_screen.dart';
 import 'package:todo/presentation/widgets/app_wrapper.dart';
 import 'package:todo/presentation/widgets/custom_button.dart';
 
