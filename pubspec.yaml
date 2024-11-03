@@ -44,6 +44,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+  fonts:
+    - family: SFUIDisplay
+      fonts:
+        - asset: assets/fonts/SFUIDisplay-Regular.ttf
+
 
 flutter_intl:
   enabled: true

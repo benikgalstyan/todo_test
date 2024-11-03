@@ -21,6 +21,7 @@ class TodoApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
+      locale: const Locale('uk'),
       theme: ThemeData.dark(),
       routerConfig: _router.config(),
       builder: (context, router) {
