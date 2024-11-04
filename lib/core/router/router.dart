@@ -3,7 +3,7 @@ import 'package:todo/data/models/task_model.dart';
 import 'package:todo/presentation/pages/login_screen/login_screen.dart';
 import 'package:todo/presentation/pages/main_screen/main_screen.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:todo/presentation/pages/task_creation_screen/task_creation_screen.dart';
+import 'package:todo/presentation/pages/task_manage_screen/task_manage_screen.dart';
 
 part 'router.gr.dart';
 
@@ -18,8 +18,8 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(page: MainRoute.page, path: MainScreen.nameRoute),
         AutoRoute(
-          page: TaskCreationRoute.page,
-          path: TaskCreationScreen.nameRoute,
+          page: TaskManageRoute.page,
+          path: TaskManageScreen.nameRoute,
         ),
       ];
 }

@@ -5,15 +5,26 @@ import 'package:todo/core/theme/text_styles.dart';
 import 'package:todo/presentation/tokens/spacing.dart';
 
 class UrgentTaskWidget extends StatefulWidget {
-  const UrgentTaskWidget({super.key, required this.onUrgentChanged});
+  const UrgentTaskWidget({
+    super.key,
+    required this.onUrgentChanged,
+    this.isUrgent = false,
+  });
 
   final ValueChanged<int> onUrgentChanged;
+  final bool isUrgent;
 
   @override
   State<UrgentTaskWidget> createState() => _UrgentTaskWidgetState();
 }
 
 class _UrgentTaskWidgetState extends State<UrgentTaskWidget> {
+  @override
+  void initState() {
+    super.initState();
+    isUrgent = widget.isUrgent;
+  }
+
   bool isUrgent = false;
   static const containerHeight = 50.0;
 
@@ -37,7 +48,7 @@ class _UrgentTaskWidgetState extends State<UrgentTaskWidget> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Icon(getIcon, color: Colors.white),
+                Icon(getIcon, color: Palette.borderColor),
                 Spacings.spacer8,
                 Text(context.s.urgent, style: TextStyles.attachTextStyle),
               ],

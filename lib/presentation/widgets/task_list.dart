@@ -7,9 +7,10 @@ import 'package:todo/presentation/tokens/spacing.dart';
 import 'package:todo/presentation/pages/main_screen/bloc/main_bloc.dart';
 
 class TaskList extends StatefulWidget {
-  const TaskList({super.key, required this.tasks});
+  const TaskList({super.key, required this.tasks, required this.onTaskTap});
 
   final List<Task> tasks;
+  final ValueChanged<Task> onTaskTap;
 
   @override
   State<TaskList> createState() => _TaskListState();
@@ -53,49 +54,52 @@ class _TaskListState extends State<TaskList> {
           itemCount: widget.tasks.length,
           itemBuilder: (context, index) {
             final task = widget.tasks[index];
-            return Padding(
-              padding: Spacings.paddingV8,
-              child: Container(
-                padding: Spacings.padding8,
-                decoration: BoxDecoration(
-                  color: _getBackgroundColor(index),
-                  borderRadius: borderRadius,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      _getTaskStartIcon(index),
-                      color: Palette.textColor,
-                      size: startIconSize,
-                    ),
-                    Spacings.spacer12,
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(task.name, style: TextStyles.taskNameStyle),
-                          Spacings.spacer4,
-                          Text(
-                            task.formattedFinishDate,
-                            style: TextStyles.dateStyle,
-                          ),
-                        ],
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        final newStatus = task.status == 1 ? 2 : 1;
-                        _toggleTaskStatus(index);
-                        _updateTask(index: index, newStatus: newStatus);
-                      },
-                      icon: Icon(
-                        size: endIconSize,
-                        _getTaskEndIcon(index),
+            return GestureDetector(
+              onTap: () => widget.onTaskTap(task), // Переход на редактирование
+              child: Padding(
+                padding: Spacings.paddingV8,
+                child: Container(
+                  padding: Spacings.padding8,
+                  decoration: BoxDecoration(
+                    color: _getBackgroundColor(index),
+                    borderRadius: borderRadius,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        _getTaskStartIcon(index),
                         color: Palette.textColor,
+                        size: startIconSize,
                       ),
-                    ),
-                  ],
+                      Spacings.spacer12,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(task.name, style: TextStyles.taskNameStyle),
+                            Spacings.spacer4,
+                            Text(
+                              task.formattedFinishDate,
+                              style: TextStyles.dateStyle,
+                            ),
+                          ],
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          final newStatus = task.status == 1 ? 2 : 1;
+                          _toggleTaskStatus(index);
+                          _updateTask(index: index, newStatus: newStatus);
+                        },
+                        icon: Icon(
+                          size: endIconSize,
+                          _getTaskEndIcon(index),
+                          color: Palette.textColor,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
