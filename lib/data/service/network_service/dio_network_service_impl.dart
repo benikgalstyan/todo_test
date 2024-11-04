@@ -42,7 +42,7 @@ class DioNetworkServiceImpl implements NetworkService {
   Future<Response<T>> post<T>(
     String url, {
     required HeaderMap headers,
-    required JsonMap body,
+    required List<Map<String, dynamic>> body,
   }) {
     try {
       return _dio.post<T>(

@@ -54,7 +54,7 @@ class _TaskCreationLayoutState extends State<TaskCreationLayout> {
 
   void _dismissKeyboard() => FocusScope.of(context).unfocus();
 
-  void _createOrUpdateTask() {
+  void _createTask() {
     final task = Task(
       taskId: (_lastTaskId + 1).toString(),
       status: 1,
@@ -67,7 +67,7 @@ class _TaskCreationLayoutState extends State<TaskCreationLayout> {
       urgent: isUrgent ? 1 : 0,
     );
 
-    context.read<MainBloc>().add(CreateOrUpdateTaskEvent(task));
+    context.read<MainBloc>().add(CreateTaskEvent(task));
   }
 
   bool _isFormValid() {
@@ -135,7 +135,7 @@ class _TaskCreationLayoutState extends State<TaskCreationLayout> {
                   child: TODOElevatedButton.primary(
                     text: context.s.create,
                     isEnabled: _isFormValid(),
-                    onPressed: _createOrUpdateTask,
+                    onPressed: _createTask,
                   ),
                 ),
               ],

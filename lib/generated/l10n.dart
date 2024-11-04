@@ -89,6 +89,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Task name`
+  String get nameOfTask {
+    return Intl.message(
+      'Task name',
+      name: 'nameOfTask',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get create {
+    return Intl.message(
+      'Create',
+      name: 'create',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add description...`
+  String get addDescription {
+    return Intl.message(
+      'Add description...',
+      name: 'addDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attach file`
+  String get attachFile {
+    return Intl.message(
+      'Attach file',
+      name: 'attachFile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deadline:`
+  String get deadline {
+    return Intl.message(
+      'Deadline:',
+      name: 'deadline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Urgent`
+  String get urgent {
+    return Intl.message(
+      'Urgent',
+      name: 'urgent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
