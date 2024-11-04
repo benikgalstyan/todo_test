@@ -20,3 +20,6 @@ class MainErrorState extends MainState {
 
   final Object exception;
 }
+class MainCreatingState extends MainState {}
+
+class MainCreatedState extends MainState {}
