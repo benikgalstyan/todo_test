@@ -81,7 +81,7 @@ class _TaskCreationLayoutState extends State<TaskCreationLayout> {
       child: BlocListener<MainBloc, MainState>(
         listener: (context, state) {
           if (state is MainLoadedState) {
-            context.r.push(MainRoute(tasks: state.tasks));
+            context.r.replaceAll([MainRoute(tasks: state.tasks)]);
           } else if (state is MainErrorState) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('Error: ${state.exception}')),

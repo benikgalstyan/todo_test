@@ -28,7 +28,7 @@ class _LoginLayoutState extends State<LoginLayout> {
             child: BlocConsumer<LoginBloc, LoginState>(
               listener: (context, state) {
                 if (state is TaskLoadedState) {
-                  context.r.push(MainRoute(tasks: state.tasks));
+                  context.r.replaceAll([MainRoute(tasks: state.tasks)]);
                 } else if (state is LoginErrorState) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('Error: ${state.exception}')),
