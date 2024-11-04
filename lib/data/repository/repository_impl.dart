@@ -74,4 +74,11 @@ class RepositoryImpl implements Repository {
       rethrow;
     }
   }
+
+  @override
+  Future<void> saveTasks(List<Task> tasks) =>
+      localStorageService.saveTasks(tasks);
+
+  @override
+  Future<List<Task>> getLocalTasks() => localStorageService.getTasks();
 }

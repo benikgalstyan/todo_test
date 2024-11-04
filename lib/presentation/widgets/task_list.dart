@@ -55,7 +55,7 @@ class _TaskListState extends State<TaskList> {
           itemBuilder: (context, index) {
             final task = widget.tasks[index];
             return GestureDetector(
-              onTap: () => widget.onTaskTap(task), // Переход на редактирование
+              onTap: () => widget.onTaskTap(task),
               child: Padding(
                 padding: Spacings.paddingV8,
                 child: Container(
