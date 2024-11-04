@@ -8,4 +8,8 @@ abstract interface class Repository {
   Future<void> createTask(Task task);
 
   Future<void> updateTaskStatus(String taskId, int newStatus);
+
+  Future<void> saveTasks(List<Task> tasks);
+
+  Future<List<Task>> getLocalTasks();
 }

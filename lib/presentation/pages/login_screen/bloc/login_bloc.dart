@@ -13,9 +13,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       emit(LoginLoadingState());
       try {
         final tasks = await repository.getTasks();
+        await repository.saveTasks(tasks);
         emit(TaskLoadedState(tasks: tasks));
       } catch (e) {
-        emit(LoginErrorState(e));
+        try {
+          final localTasks = await repository.getLocalTasks();
+          emit(TaskLoadedState(tasks: localTasks));
+        } catch (localError) {
+          emit(LoginErrorState(e));
+        }
       }
     });
   }
