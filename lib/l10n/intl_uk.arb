@@ -3,10 +3,11 @@
   "allTasks": "Усі",
   "work": "Робочі",
   "personal": "Особисті",
-  "nameOfTask": "Назва завдання",
+  "nameOfTask": "Назва завдання...",
   "create": "Створити",
   "addDescription": "Додати опис...",
   "attachFile": "Прикріпити файл",
   "deadline": "Дата завершення:",
-  "urgent": "Термінове"
+  "urgent": "Термінове",
+  "delete": "Видалити"
 }
