@@ -13,7 +13,6 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       try {
         emit(MainUpdatingState());
         await repository.updateTaskStatus(event.taskId, event.newStatus);
-        emit(MainUpdatedState());
         final tasks = await repository.getTasks();
         emit(MainLoadedState(tasks: tasks));
       } catch (e) {
@@ -24,11 +23,20 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       try {
         emit(MainCreatingState());
         await repository.createTask(event.task);
-        emit(MainCreatedState());
         final tasks = await repository.getTasks();
         emit(MainLoadedState(tasks: tasks));
       } catch (e) {
         emit(MainErrorState(e.toString()));
+      }
+    });
+    on<DeleteTaskEvent>((event, emit) async {
+      emit(MainDeletingState());
+      try {
+        await repository.deleteTask(event.taskId);
+        final tasks = await repository.getTasks();
+        emit(MainLoadedState(tasks: tasks));
+      } catch (e) {
+        emit(MainErrorState(e));
       }
     });
   }
