@@ -22,9 +22,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addDescription":
+            MessageLookupByLibrary.simpleMessage("Додати опис..."),
         "allTasks": MessageLookupByLibrary.simpleMessage("Усі"),
+        "attachFile": MessageLookupByLibrary.simpleMessage("Прикріпити файл"),
+        "create": MessageLookupByLibrary.simpleMessage("Створити"),
+        "deadline": MessageLookupByLibrary.simpleMessage("Дата завершення:"),
         "login": MessageLookupByLibrary.simpleMessage("Вхід"),
+        "nameOfTask": MessageLookupByLibrary.simpleMessage("Назва завдання"),
         "personal": MessageLookupByLibrary.simpleMessage("Особисті"),
+        "urgent": MessageLookupByLibrary.simpleMessage("Термінове"),
         "work": MessageLookupByLibrary.simpleMessage("Робочі")
       };
 }

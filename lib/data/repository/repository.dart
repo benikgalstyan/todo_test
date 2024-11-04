@@ -4,4 +4,6 @@ abstract interface class Repository {
   Future<List<Task>> getTasks();
 
   Future<void> updateTaskStatus(String taskId, int newStatus);
+
+  Future<void> createTask(Task task);
 }

@@ -2,5 +2,11 @@
   "login": "Login",
   "allTasks": "All",
   "work": "Work",
-  "personal": "Personal"
+  "personal": "Personal",
+  "nameOfTask": "Task name",
+  "create": "Create",
+  "addDescription": "Add description...",
+  "attachFile": "Attach file",
+  "deadline": "Deadline:",
+  "urgent": "Urgent"
 }

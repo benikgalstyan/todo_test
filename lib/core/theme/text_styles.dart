@@ -15,14 +15,28 @@ class TextStyles {
     fontFamily: FontFamily.sFUIDisplay,
   );
 
-  static const dateStyle =  TextStyle(
+  static const dateStyle = TextStyle(
     fontSize: 10,
-    color:  Palette.dateColor ,
+    color: Palette.dateColor,
     fontFamily: FontFamily.sFUIDisplay,
     fontWeight: FontWeight.w400,
   );
-  static const filterButtonsLabelStyle =  TextStyle(
+  static const filterButtonsLabelStyle = TextStyle(
     fontSize: 18,
     fontFamily: FontFamily.sFUIDisplay,
+  );
+  static const hintTextStyle =
+      TextStyle(color: Palette.hintColor, fontSize: 24);
+  static const textFieldStyle = TextStyle(color: Colors.white);
+  static const typeTextStyle = TextStyle(
+    color: Colors.white,
+    fontFamily: FontFamily.sFUIDisplay,
+    fontWeight: FontWeight.w500,
+    fontSize: 18,
+  );
+  static const attachTextStyle = TextStyle(
+    color: Colors.white,
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
   );
 }

@@ -31,6 +31,16 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    TaskCreationRoute.name: (routeData) {
+      final args = routeData.argsAs<TaskCreationRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: TaskCreationScreen(
+          key: args.key,
+          taskId: args.taskId,
+        ),
+      );
+    },
   };
 }
 
@@ -82,5 +92,43 @@ class MainRouteArgs {
   @override
   String toString() {
     return 'MainRouteArgs{key: $key, tasks: $tasks}';
+  }
+}
+
+/// generated route for
+/// [TaskCreationScreen]
+class TaskCreationRoute extends PageRouteInfo<TaskCreationRouteArgs> {
+  TaskCreationRoute({
+    Key? key,
+    required int taskId,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TaskCreationRoute.name,
+          args: TaskCreationRouteArgs(
+            key: key,
+            taskId: taskId,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TaskCreationRoute';
+
+  static const PageInfo<TaskCreationRouteArgs> page =
+      PageInfo<TaskCreationRouteArgs>(name);
+}
+
+class TaskCreationRouteArgs {
+  const TaskCreationRouteArgs({
+    this.key,
+    required this.taskId,
+  });
+
+  final Key? key;
+
+  final int taskId;
+
+  @override
+  String toString() {
+    return 'TaskCreationRouteArgs{key: $key, taskId: $taskId}';
   }
 }

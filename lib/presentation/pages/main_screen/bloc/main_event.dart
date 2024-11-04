@@ -9,3 +9,9 @@ class UpdateTaskStatusEvent extends MainEvent {
   final String taskId;
   final int newStatus;
 }
+
+class CreateTaskEvent extends MainEvent {
+  CreateTaskEvent(this.task);
+
+  final Task task;
+}

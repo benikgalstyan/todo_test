@@ -68,7 +68,7 @@ class TODOElevatedButton extends StatelessWidget {
       if (isEnabled!) {
         return Palette.textColor;
       } else {
-        return Palette.disabledButtonColor;
+        return Palette.dateColor;
       }
     }
 

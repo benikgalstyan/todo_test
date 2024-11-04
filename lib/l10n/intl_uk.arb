@@ -2,5 +2,11 @@
   "login": "Вхід",
   "allTasks": "Усі",
   "work": "Робочі",
-  "personal": "Особисті"
+  "personal": "Особисті",
+  "nameOfTask": "Назва завдання",
+  "create": "Створити",
+  "addDescription": "Додати опис...",
+  "attachFile": "Прикріпити файл",
+  "deadline": "Дата завершення:",
+  "urgent": "Термінове"
 }

@@ -12,7 +12,7 @@ abstract interface class NetworkService {
   Future<Response<T>> post<T>(
     String url, {
     required HeaderMap headers,
-    required JsonMap body,
+    required List<Map<String, dynamic>> body,
   });
 
   Future<Response<T>> put<T>(

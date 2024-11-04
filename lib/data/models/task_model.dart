@@ -6,9 +6,9 @@ class Task {
     required this.status,
     required this.name,
     required this.type,
+    this.description,
     required this.finishDate,
     required this.urgent,
-    this.description,
   });
 
   factory Task.fromJson(Map<String, dynamic> json) {
@@ -17,9 +17,9 @@ class Task {
       status: json['status'] as int,
       name: json['name'] as String,
       type: json['type'] as int,
+      description: json['description'] as String?,
       finishDate: DateTime.parse(json['finishDate'] as String),
       urgent: json['urgent'] as int,
-      description: json['description'] as String?,
     );
   }
 
@@ -28,9 +28,9 @@ class Task {
         'status': status,
         'name': name,
         'type': type,
+        'description': description,
         'finishDate': finishDate.toIso8601String(),
         'urgent': urgent,
-        'description': description,
       };
 
   String get formattedFinishDate {
@@ -41,7 +41,7 @@ class Task {
   int status;
   final String name;
   final int type;
+  final String? description;
   final DateTime finishDate;
   final int urgent;
-  final String? description;
 }
