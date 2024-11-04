@@ -25,9 +25,24 @@ class TextStyles {
     fontSize: 18,
     fontFamily: FontFamily.sFUIDisplay,
   );
-  static const hintTextStyle =
-      TextStyle(color: Palette.hintColor, fontSize: 24);
-  static const textFieldStyle = TextStyle(color: Colors.white);
+  static const hintTextStyle = TextStyle(
+    color: Palette.hintColor,
+    fontSize: 24,
+    fontFamily: FontFamily.sFUIDisplay,
+  );
+
+  static const textFieldStyle = TextStyle(
+    color: Colors.white,
+    fontSize: 24,
+    fontFamily: FontFamily.sFUIDisplay,
+  );
+  static const textDescriptionStyle = TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    fontFamily: FontFamily.sFUIDisplay,
+    fontWeight: FontWeight.w600,
+  );
+
   static const typeTextStyle = TextStyle(
     color: Colors.white,
     fontFamily: FontFamily.sFUIDisplay,
@@ -38,5 +53,6 @@ class TextStyles {
     color: Colors.white,
     fontSize: 18,
     fontWeight: FontWeight.w600,
+    fontFamily: FontFamily.sFUIDisplay,
   );
 }

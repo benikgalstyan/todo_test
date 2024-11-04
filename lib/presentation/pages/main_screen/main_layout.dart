@@ -19,8 +19,6 @@ class MainLayout extends StatefulWidget {
 
 class _MainLayoutState extends State<MainLayout> {
   int _selectedFilter = 0;
-  static const floatingButtonSize = 64.0;
-  static const addIcon = Icon(Icons.add, color: Colors.black, size: 33);
 
   List<Task> getFilteredTasks() => widget.tasks.where((task) {
         if (_selectedFilter == 1) return task.type == 1;
@@ -28,34 +26,31 @@ class _MainLayoutState extends State<MainLayout> {
         return true;
       }).toList();
 
+  void _navigateToTaskEditor(Task? task) =>
+      context.r.push(TaskManageRoute(task: task, tasks: widget.tasks));
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: AppWrapper(
-        child: Column(
-          children: [
-            FilterButtons(
-              selectedFilter: _selectedFilter,
-              onFilterChanged: (int newIndex) =>
-                  setState(() => _selectedFilter = newIndex),
-            ),
-            Spacings.spacer24,
-            TaskList(tasks: getFilteredTasks()),
-          ],
+  Widget build(BuildContext context) => Scaffold(
+        body: AppWrapper(
+          child: Column(
+            children: [
+              FilterButtons(
+                selectedFilter: _selectedFilter,
+                onFilterChanged: (int newIndex) =>
+                    setState(() => _selectedFilter = newIndex),
+              ),
+              Spacings.spacer24,
+              TaskList(
+                tasks: getFilteredTasks(),
+                onTaskTap: _navigateToTaskEditor,
+              ),
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: SizedBox(
-        height: floatingButtonSize,
-        width: floatingButtonSize,
-        child: FloatingActionButton(
+        floatingActionButton: FloatingActionButton(
           backgroundColor: Palette.primaryButtonColor,
-          onPressed: () {
-            final lastTaskId = int.parse(widget.tasks.last.taskId);
-            context.r.push(TaskCreationRoute(taskId: lastTaskId));
-          },
-          child: addIcon,
+          onPressed: () => _navigateToTaskEditor(null),
+          child: const Icon(Icons.add, color: Colors.black, size: 33),
         ),
-      ),
-    );
-  }
+      );
 }

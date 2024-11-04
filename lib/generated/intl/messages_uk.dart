@@ -28,8 +28,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "attachFile": MessageLookupByLibrary.simpleMessage("Прикріпити файл"),
         "create": MessageLookupByLibrary.simpleMessage("Створити"),
         "deadline": MessageLookupByLibrary.simpleMessage("Дата завершення:"),
+        "delete": MessageLookupByLibrary.simpleMessage("Видалити"),
         "login": MessageLookupByLibrary.simpleMessage("Вхід"),
-        "nameOfTask": MessageLookupByLibrary.simpleMessage("Назва завдання"),
+        "nameOfTask": MessageLookupByLibrary.simpleMessage("Назва завдання..."),
         "personal": MessageLookupByLibrary.simpleMessage("Особисті"),
         "urgent": MessageLookupByLibrary.simpleMessage("Термінове"),
         "work": MessageLookupByLibrary.simpleMessage("Робочі")

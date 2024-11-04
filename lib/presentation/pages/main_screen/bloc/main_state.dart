@@ -7,8 +7,6 @@ class MainInitialState extends MainState {}
 
 class MainUpdatingState extends MainState {}
 
-class MainUpdatedState extends MainState {}
-
 class MainLoadedState extends MainState {
   MainLoadedState({required this.tasks});
 
@@ -20,6 +18,7 @@ class MainErrorState extends MainState {
 
   final Object exception;
 }
+
 class MainCreatingState extends MainState {}
 
-class MainCreatedState extends MainState {}
+class MainDeletingState extends MainState {}

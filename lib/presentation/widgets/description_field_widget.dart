@@ -46,13 +46,13 @@ class _DescriptionFieldWidgetState extends State<DescriptionFieldWidget> {
                 child: TextField(
                   controller: widget.descriptionController,
                   focusNode: _focusNode,
-                  style: TextStyles.textFieldStyle,
+                  style: TextStyles.textDescriptionStyle,
                   maxLines: maxLines,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText:
                         _isDescriptionFocused ? '' : context.s.addDescription,
-                    hintStyle: TextStyles.textFieldStyle,
+                    hintStyle: TextStyles.textDescriptionStyle,
                   ),
                 ),
               ),

@@ -8,5 +8,6 @@
   "addDescription": "Add description...",
   "attachFile": "Attach file",
   "deadline": "Deadline:",
-  "urgent": "Urgent"
+  "urgent": "Urgent",
+  "delete": "Delete"
 }

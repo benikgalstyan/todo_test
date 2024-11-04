@@ -31,13 +31,14 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    TaskCreationRoute.name: (routeData) {
-      final args = routeData.argsAs<TaskCreationRouteArgs>();
+    TaskManageRoute.name: (routeData) {
+      final args = routeData.argsAs<TaskManageRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: TaskCreationScreen(
+        child: TaskManageScreen(
           key: args.key,
-          taskId: args.taskId,
+          task: args.task,
+          tasks: args.tasks,
         ),
       );
     },
@@ -96,39 +97,44 @@ class MainRouteArgs {
 }
 
 /// generated route for
-/// [TaskCreationScreen]
-class TaskCreationRoute extends PageRouteInfo<TaskCreationRouteArgs> {
-  TaskCreationRoute({
+/// [TaskManageScreen]
+class TaskManageRoute extends PageRouteInfo<TaskManageRouteArgs> {
+  TaskManageRoute({
     Key? key,
-    required int taskId,
+    Task? task,
+    required List<Task> tasks,
     List<PageRouteInfo>? children,
   }) : super(
-          TaskCreationRoute.name,
-          args: TaskCreationRouteArgs(
+          TaskManageRoute.name,
+          args: TaskManageRouteArgs(
             key: key,
-            taskId: taskId,
+            task: task,
+            tasks: tasks,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'TaskCreationRoute';
+  static const String name = 'TaskManageRoute';
 
-  static const PageInfo<TaskCreationRouteArgs> page =
-      PageInfo<TaskCreationRouteArgs>(name);
+  static const PageInfo<TaskManageRouteArgs> page =
+      PageInfo<TaskManageRouteArgs>(name);
 }
 
-class TaskCreationRouteArgs {
-  const TaskCreationRouteArgs({
+class TaskManageRouteArgs {
+  const TaskManageRouteArgs({
     this.key,
-    required this.taskId,
+    this.task,
+    required this.tasks,
   });
 
   final Key? key;
 
-  final int taskId;
+  final Task? task;
+
+  final List<Task> tasks;
 
   @override
   String toString() {
-    return 'TaskCreationRouteArgs{key: $key, taskId: $taskId}';
+    return 'TaskManageRouteArgs{key: $key, task: $task, tasks: $tasks}';
   }
 }

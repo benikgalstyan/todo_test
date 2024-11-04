@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo/core/context_extensions.dart';
 import 'package:todo/core/theme/palette.dart';
 import 'package:todo/core/theme/text_styles.dart';
+import 'package:todo/presentation/tokens/spacing.dart';
 
 class TypeButtonWidget extends StatelessWidget {
   const TypeButtonWidget({
@@ -15,7 +16,7 @@ class TypeButtonWidget extends StatelessWidget {
 
   static const iconSize = 30.0;
   static const containerHeight = 50.0;
-  static const padding = EdgeInsets.only(left: 16, right: 60);
+  static const padding = EdgeInsets.only(right: 60);
 
   IconData get icon =>
       selectedFilter == 1 ? Icons.circle_rounded : Icons.circle_outlined;
@@ -36,12 +37,14 @@ class TypeButtonWidget extends StatelessWidget {
                 onPressed: () => onFilterChanged(1),
                 icon: Icon(icon, size: iconSize, color: Colors.white),
               ),
+              Spacings.spacer4,
               Text(context.s.work, style: TextStyles.typeTextStyle),
               const Spacer(),
               IconButton(
                 onPressed: () => onFilterChanged(2),
                 icon: Icon(anotherIcon, size: iconSize, color: Colors.white),
               ),
+              Spacings.spacer4,
               Text(context.s.personal, style: TextStyles.typeTextStyle),
             ],
           ),

@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:intl/intl.dart';
 import 'package:todo/data/models/task_model.dart';
 import 'package:todo/data/repository/repository.dart';
 import 'package:todo/data/service/local_storage/local_storage_service.dart';
@@ -18,14 +15,15 @@ class RepositoryImpl implements Repository {
   static const _baseUrl =
       'https://to-do.softwars.com.ua/{galstyan.benik@gmail.com}';
   static const tasksEndpoint = '/tasks';
-  static const _contentType = 'application/json';
+  static const _contentTypeValue = 'application/json';
+  static const _contentTypeKey = 'Content-Type';
 
   @override
   Future<List<Task>> getTasks() async {
     try {
       final response = await networkService.get<Map<String, dynamic>>(
         '$_baseUrl$tasksEndpoint',
-        headers: {'Content-Type': _contentType},
+        headers: {'Content-Type': _contentTypeValue},
       );
 
       final tasksData = response.data?['data'] as List<dynamic>? ?? [];
@@ -43,10 +41,10 @@ class RepositoryImpl implements Repository {
         body: {
           'status': status,
         },
-        headers: {'Content-Type': _contentType},
+        headers: {_contentTypeKey: _contentTypeValue},
       );
-    } catch (e) {
-      throw Exception('Failed to update task status: $e');
+    } catch (error) {
+      rethrow;
     }
   }
 
@@ -58,10 +56,22 @@ class RepositoryImpl implements Repository {
         body: [
           task.toJson(),
         ],
-        headers: {'Content-Type': 'application/json'},
+        headers: {_contentTypeKey: _contentTypeValue},
       );
-    } catch (e) {
-      throw Exception('Failed to create or update task: $e');
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> deleteTask(String taskId) async {
+    try {
+      await networkService.delete(
+        '$_baseUrl$tasksEndpoint/$taskId',
+        headers: {_contentTypeKey: _contentTypeValue},
+      );
+    } catch (error) {
+      rethrow;
     }
   }
 }

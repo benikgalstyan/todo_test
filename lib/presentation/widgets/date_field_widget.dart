@@ -6,15 +6,28 @@ import 'package:todo/presentation/tokens/spacing.dart';
 import 'package:intl/intl.dart';
 
 class CompletionDateWidget extends StatefulWidget {
-  const CompletionDateWidget({super.key, required this.onDateChanged});
+  const CompletionDateWidget({
+    super.key,
+    required this.onDateChanged,
+    this.initialDate,
+  });
 
   final ValueChanged<String?> onDateChanged;
+  final String? initialDate;
 
   @override
   State<CompletionDateWidget> createState() => _CompletionDateWidgetState();
 }
 
 class _CompletionDateWidgetState extends State<CompletionDateWidget> {
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialDate != null) {
+      _selectedDate = DateTime.parse(widget.initialDate!);
+    }
+  }
+
   DateTime? _selectedDate;
   static const containerHeight = 50.0;
 
@@ -52,7 +65,8 @@ class _CompletionDateWidgetState extends State<CompletionDateWidget> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(context.s.deadline, style: TextStyles.attachTextStyle),
+                if (_selectedDate == null)
+                  Text(context.s.deadline, style: TextStyles.attachTextStyle),
                 Text(
                   _selectedDate != null
                       ? DateFormat('d MMMM yyyy', 'uk_UA')
