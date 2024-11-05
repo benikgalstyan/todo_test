@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "create": MessageLookupByLibrary.simpleMessage("Create"),
         "deadline": MessageLookupByLibrary.simpleMessage("Deadline:"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "image": MessageLookupByLibrary.simpleMessage("Attach image"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "nameOfTask": MessageLookupByLibrary.simpleMessage("Task name"),
         "personal": MessageLookupByLibrary.simpleMessage("Personal"),

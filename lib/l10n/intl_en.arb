@@ -9,5 +9,6 @@
   "attachFile": "Attach file",
   "deadline": "Deadline:",
   "urgent": "Urgent",
-  "delete": "Delete"
+  "delete": "Delete",
+  "image": "Attach image"
 }
