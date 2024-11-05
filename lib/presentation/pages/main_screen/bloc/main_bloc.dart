@@ -20,8 +20,8 @@ class MainBloc extends Bloc<MainEvent, MainState> {
       }
     });
     on<CreateTaskEvent>((event, emit) async {
+      emit(MainCreatingState());
       try {
-        emit(MainCreatingState());
         await repository.createTask(event.task);
         final tasks = await repository.getTasks();
         emit(MainLoadedState(tasks: tasks));

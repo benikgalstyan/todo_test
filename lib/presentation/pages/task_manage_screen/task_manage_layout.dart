@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/core/context_extensions.dart';
@@ -25,9 +27,11 @@ class TaskManageLayout extends StatefulWidget {
 }
 
 class _TaskManageLayoutState extends State<TaskManageLayout> {
+  String? base64File;
   late int _newTaskId;
-  int selectedFilter = 1;
+  File? _selectedFile;
   bool isUrgent = false;
+  int selectedFilter = 1;
   String? _formattedDate;
 
   final _titleFocusNode = FocusNode();
@@ -68,6 +72,11 @@ class _TaskManageLayoutState extends State<TaskManageLayout> {
       setState(() => isUrgent = urgentIndex == 1);
 
   void _createOrUpdateTask() {
+    if (_selectedFile != null) {
+      final bytes = _selectedFile!.readAsBytesSync();
+      base64File = base64Encode(bytes);
+    }
+
     final task = Task(
       taskId: _newTaskId.toString(),
       status: widget.task?.status ?? 1,
@@ -78,6 +87,7 @@ class _TaskManageLayoutState extends State<TaskManageLayout> {
           : null,
       finishDate: DateTime.parse(_formattedDate!),
       urgent: isUrgent ? 1 : 0,
+      file: base64File,
     );
 
     context.read<MainBloc>().add(CreateTaskEvent(task));
@@ -92,64 +102,73 @@ class _TaskManageLayoutState extends State<TaskManageLayout> {
   @override
   Widget build(BuildContext context) => GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: Scaffold(
-          appBar: TaskManageAppBar(
-            titleController: _titleController,
-            titleFocusNode: _titleFocusNode,
-            onSave: _isFormValid() ? _createOrUpdateTask : null,
-            isEditing: widget.task != null,
-          ),
-          backgroundColor: Palette.backgroundColor,
-          body: BlocConsumer<MainBloc, MainState>(
-            listener: (context, state) {
-              if (state is MainLoadedState) {
-                context.r.replaceAll([MainRoute(tasks: state.tasks)]);
-              } else if (state is MainErrorState) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Error: ${state.exception}')),
-                );
-              }
-            },
-            builder: (context, state) {
-              if (state is MainDeletingState) {
-                return const Center(child: CircularProgressIndicator());
-              }
-
-              return Column(
-                children: [
-                  Spacings.spacer24,
-                  TypeButtonWidget(
-                    selectedFilter: selectedFilter,
-                    onFilterChanged: (index) =>
-                        setState(() => selectedFilter = index),
-                  ),
-                  Spacings.spacer8,
-                  DescriptionFieldWidget(
-                    descriptionController: _descriptionController,
-                  ),
-                  Spacings.spacer8,
-                  const FileAttachmentWidget(),
-                  Spacings.spacer8,
-                  CompletionDateWidget(
-                    initialDate: _formattedDate,
-                    onDateChanged: _onDateChanged,
-                  ),
-                  Spacings.spacer8,
-                  UrgentTaskWidget(
-                    isUrgent: isUrgent,
-                    onUrgentChanged: _onUrgentChanged,
-                  ),
-                  Spacings.spacer24,
-                  TaskActionButtons(
-                    isEditing: widget.task != null,
-                    isFormValid: _isFormValid(),
-                    onCreateOrUpdate: _createOrUpdateTask,
-                    onDelete: _deleteTask,
-                  ),
-                ],
+        child: BlocConsumer<MainBloc, MainState>(
+          listener: (context, state) {
+            if (state is MainLoadedState) {
+              context.r.replaceAll([MainRoute(tasks: state.tasks)]);
+            } else if (state is MainErrorState) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Error: ${state.exception}')),
               );
-            },
-          ),
+            }
+          },
+          builder: (context, state) {
+            if (state is MainDeletingState || state is MainCreatingState) {
+              return const Scaffold(
+                body: Center(child: CircularProgressIndicator()),
+              );
+            }
+
+            return Scaffold(
+              appBar: TaskManageAppBar(
+                titleController: _titleController,
+                titleFocusNode: _titleFocusNode,
+                onSave: _isFormValid() ? _createOrUpdateTask : null,
+                isEditing: widget.task != null,
+              ),
+              backgroundColor: Palette.backgroundColor,
+              body: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Spacings.spacer24,
+                    TypeButtonWidget(
+                      selectedFilter: selectedFilter,
+                      onFilterChanged: (index) =>
+                          setState(() => selectedFilter = index),
+                    ),
+                    Spacings.spacer8,
+                    DescriptionFieldWidget(
+                      descriptionController: _descriptionController,
+                    ),
+                    Spacings.spacer8,
+                    FileAttachmentWidget(
+                      onFileSelected: (file) =>
+                          setState(() => _selectedFile = file),
+                    ),
+                    Spacings.spacer8,
+                    CompletionDateWidget(
+                      initialDate: _formattedDate,
+                      onDateChanged: _onDateChanged,
+                    ),
+                    Spacings.spacer8,
+                    UrgentTaskWidget(
+                      isUrgent: isUrgent,
+                      onUrgentChanged: _onUrgentChanged,
+                    ),
+                    Spacings.spacer24,
+                    TaskActionButtons(
+                      isEditing: widget.task != null,
+                      isFormValid: _isFormValid(),
+                      onCreateOrUpdate: _createOrUpdateTask,
+                      onDelete: _deleteTask,
+                    ),
+                    Spacings.spacer24,
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       );
 }
