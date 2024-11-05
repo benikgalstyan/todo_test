@@ -32,6 +32,9 @@ dependencies:
   logger: ^2.3.0
   # https://pub.dev/packages/intl
   intl: ^0.18.1
+  # https://pub.dev/packages/image_picker
+  image_picker: ^1.1.2
+  path_provider: ^2.0.10
 
 dev_dependencies:
   flutter_test:

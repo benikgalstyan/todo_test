@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "create": MessageLookupByLibrary.simpleMessage("Створити"),
         "deadline": MessageLookupByLibrary.simpleMessage("Дата завершення:"),
         "delete": MessageLookupByLibrary.simpleMessage("Видалити"),
+        "image": MessageLookupByLibrary.simpleMessage("Вкладене зображення"),
         "login": MessageLookupByLibrary.simpleMessage("Вхід"),
         "nameOfTask": MessageLookupByLibrary.simpleMessage("Назва завдання..."),
         "personal": MessageLookupByLibrary.simpleMessage("Особисті"),

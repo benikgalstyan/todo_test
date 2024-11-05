@@ -7,6 +7,7 @@ class Task {
     required this.name,
     required this.type,
     this.description,
+    this.file,
     required this.finishDate,
     required this.urgent,
   });
@@ -18,6 +19,7 @@ class Task {
       name: json['name'] as String,
       type: json['type'] as int,
       description: json['description'] as String?,
+      file: json['file'] as String?,
       finishDate: DateTime.parse(json['finishDate'] as String),
       urgent: json['urgent'] as int,
     );
@@ -29,6 +31,7 @@ class Task {
         'name': name,
         'type': type,
         'description': description,
+        'file': file,
         'finishDate': finishDate.toIso8601String(),
         'urgent': urgent,
       };
@@ -37,11 +40,12 @@ class Task {
     return DateFormat('dd/MM/yyyy').format(finishDate);
   }
 
-  final String taskId;
   int status;
-  final String name;
+  String? file;
   final int type;
+  final int urgent;
+  final String name;
+  final String taskId;
   final String? description;
   final DateTime finishDate;
-  final int urgent;
 }

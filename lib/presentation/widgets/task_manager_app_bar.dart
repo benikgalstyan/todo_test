@@ -31,6 +31,7 @@ class TaskManageAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 12.0, bottom: 12),
       child: AppBar(
+        surfaceTintColor: Colors.transparent,
         backgroundColor: Palette.backgroundColor,
         leading: IconButton(
           icon: arrowBackIcon,
@@ -48,8 +49,8 @@ class TaskManageAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         actions: isEditing
             ? [
-          IconButton(icon: acceptIcon, onPressed: onSave),
-        ]
+                IconButton(icon: acceptIcon, onPressed: onSave),
+              ]
             : null,
       ),
     );
